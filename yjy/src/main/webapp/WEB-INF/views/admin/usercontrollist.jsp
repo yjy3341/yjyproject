@@ -30,9 +30,6 @@ function getUser(){
 	
 	$.ajax({
 		url:"../admin/usercontrol",
-		/*   data:{"id":'${user.id}',
-			 	"nickname":'${user.nickname}'}, 
-	 		dataType:"json",    */
 		success:function(data){
 			
 	

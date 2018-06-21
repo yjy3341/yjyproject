@@ -20,9 +20,7 @@
 	<div class="col-xs-1"><%@include file="../include/mainheader.jsp"%></div>
    <div class="col-xs-4">
 
- 	<%-- <input type="text" name="nickname"
-					value="${user.nickname}" readonly="readonly" class="form-control"/> --%>
-   <!--  <input type="button" id="sendBtn" value=""/> -->
+ 	
     <div class="panel panel-default">
         
      <div class="panel-heading">

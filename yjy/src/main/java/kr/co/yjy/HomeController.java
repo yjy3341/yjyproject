@@ -62,12 +62,10 @@ public class HomeController {
 	public String logout(HttpSession session){
 		//세션 초기화
 		session.invalidate();
-		
+
 		return "redirect:/";
 	}
-	
-		
-	}
+}
 	
 
 	

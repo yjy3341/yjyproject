@@ -11,7 +11,9 @@
 <div class="row">
 <div class="col-xs-1"><%@include file="../include/mainheader.jsp"%></div>
 <div class="col-xs-5">
-
+	<!-- method 와 enctype은 파일을 업로드하기 위해서 설정
+	파일이 업로드되는 폼은 반드시 method는 post 로
+	enctype은 multipart/form-data로 설정-->
 	<div class="box-header">
 		<h3 class="box-title">사진 올리기</h3>
 	</div>

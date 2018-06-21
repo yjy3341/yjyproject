@@ -13,10 +13,10 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class ChatHandler extends TextWebSocketHandler {
 	
-	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+
 	// 이 List는 1개만 만들어져야 하므로 static으로 선언
 
-//	private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+	private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 
 
 	//클라이언트와 연결 된 후

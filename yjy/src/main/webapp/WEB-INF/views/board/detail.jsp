@@ -73,9 +73,6 @@
 	
 	//목록 버튼을 눌렀을 때 처리
 	document.getElementById("listbtn").addEventListener("click", function(){
-		/* formObj.attr("action", "/board/update");
-		formObj.attr("method", "get");	
-		formObj.submit(); */
 		location.href="board?page=${criteria.page}&perPageNum=${criteria.perPageNum}";
 	});
 	

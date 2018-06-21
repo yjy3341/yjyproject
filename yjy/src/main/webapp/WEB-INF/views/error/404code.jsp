@@ -30,7 +30,6 @@
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<h4>URL이 잘못되었습니다.<br/>
-		빠른 시간에 복구하겠습니다.</h4>
-	<%@ include file="../include/footer.jsp"%>
+		빠른 시간에 복구하겠습니다.</h4>>
 </body>
 </html>

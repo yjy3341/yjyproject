@@ -11,11 +11,7 @@
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<!-- method 와 enctype은 파일을 업로드하기 위해서 설정
-	파일이 업로드되는 폼은 반드시 method는 post 로
-	enctype은 multipart/form-data로 설정
-	onsubmit에 함수를 연결한 것은 폼의 데이터를 전송할 때
-	유효성 검사를 하기 위해서 입니다. -->
+
 	<div class="row">
 		  <div class='col-xs-6 col-md-4'> </div>
 	  <div class='col-xs-6 col-md-4'> 
