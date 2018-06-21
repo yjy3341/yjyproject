@@ -16,6 +16,7 @@ public class ChatHandler extends TextWebSocketHandler {
 
 	// 이 List는 1개만 만들어져야 하므로 static으로 선언
 
+	
 	private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 
 
