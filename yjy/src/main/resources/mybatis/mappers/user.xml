@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+<!-- id 중복 검사 -->
+<select id="idcheck" parameterType="java.lang.String" resultType="java.lang.String">
+	select id
+	from yjyuser
+	where id = #{id}
+</select>
+
+<!-- 회원가입 SQL -->
+<insert id="register" parameterType="User">
+	insert into yjyuser(id, pw, nickname, name)
+	values(#{id}, #{pw}, #{nickname}, #{name} )
+</insert>
+
+<!-- 로그인 처리하는 SQL -->
+<select id="login" parameterType="java.lang.String" resultType="User">
+	select id, pw, nickname, name
+	from yjyuser
+	where id = #{id}
+</select>
+
+<!-- 유저 정보 가져오는 SQL -->
+<select id="usercontrol" resultType="User">
+select *
+from yjyuser
+</select>
+
+<!-- 유저 정보 삭제하는 SQL -->
+<delete id="userdelete" parameterType="java.lang.String">
+delete from yjyuser
+where id = #{id}
+</delete>
+ 
+</mapper>
+

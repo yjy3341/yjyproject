@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+<!-- 공통으로 사용할 SQL 작성 -->
+		<sql id="reply">
+			select *
+			from yjyreply
+			where rtype =
+		</sql>
+		<sql id="replyorder">
+			order by regdate desc 
+		</sql>
+				
+			
+<!-- 댓글 작성하는 SQL -->
+
+<insert id="register" parameterType="Reply">
+	insert into yjyreply(rtype, rno, id, nickname, replytext)
+	values(#{rtype}, replyseq.nextval, #{id}, #{nickname}, #{replytext})
+</insert>
+
+<!-- 댓글 리스트 가져오는 SQL -->
+<!-- ===================================================== -->
+<select id="mercurylist" resultType="Reply">
+<include refid="reply"></include>'mercury'
+<include refid="replyorder"></include>
+</select>
+
+
+<select id="sunlist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'sun'
+<include refid="replyorder"></include>
+</select>
+
+
+<select id="venuslist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'venus'
+<include refid="replyorder"></include>
+</select>
+
+<select id="earthlist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'earth'
+<include refid="replyorder"></include>
+</select>
+
+<select id="marslist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'mars'
+<include refid="replyorder"></include>
+</select>
+
+<select id="jupiterlist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'jupiter'
+<include refid="replyorder"></include>
+</select>
+
+<select id="saturnlist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'saturn'
+<include refid="replyorder"></include>
+</select>
+
+<select id="uranuslist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'uranus'
+<include refid="replyorder"></include>
+</select>
+
+<select id="neptunelist" parameterType="Reply" resultType="Reply">
+<include refid="reply"></include>'neptune'
+<include refid="replyorder"></include>
+</select>
+<!-- ===================================================== -->
+
+
+<!-- 댓글 삭제하는 SQL -->
+<delete id="delete" parameterType="java.lang.Integer">
+delete from yjyreply
+where rno = #{rno}
+</delete>
+
+<!-- 댓글 수정하는 SQL -->
+<update id="update" parameterType="Reply">
+update yjyreply
+set replytext = #{replytext}, regdate=sysdate
+where rno = #{rno}
+</update>
+
+<!-- 댓글 갯수 찾는 SQL -->
+<select id="totalcount" resultType="java.lang.Integer">
+	select count(*)
+	from yjyreply
+	where rtype = #{rtype}
+</select>
+</mapper>

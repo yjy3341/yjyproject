@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+<!-- 공통으로 사용할 SQL 작성 -->
+		<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				where title like '%' || #{keyword} || '%'
+			</if>
+			<if test="searchType == 'c'.toString()">
+				where content like '%' || #{keyword} || '%'
+			</if>		
+		</if>
+	</sql>
+
+<!-- 게시판 글 올리는 SQL -->
+<insert id="register" parameterType="Board">
+insert into yjyboard(bno, title, content, id, nickname)
+values(boardseq.nextval, #{title}, #{content}, #{id}, #{nickname})
+</insert>
+
+<!-- 페이징 처리 -->
+	<!-- 이때 중요한 점! 띄워줄 시작 페이지 번호는 현재 페이지인 page 변수가 오는게 아니라, (page-1) * perPageNum 
+		값이 와야한다.!! 헌데, #{pageStart} 는 받은 객체의 get 메서드를 호출하기 때문에 getPageStart() 메서드를 
+		호출하게 되고, Criteria 클래스의 getPageStart에서 위의 계산식을 반환하도록 해났음으로 시작 페이지 튜플의 행번호를 
+		가져올 수 있다. -->
+<select id="list" resultType="Board" parameterType="SearchCriteria" >
+	select bno, title, nickname, regdate, readcnt, id
+	from (select rownum rnum, bno, title, nickname, regdate, readcnt, id
+		  from (select * from yjyboard <include refid="search"></include>
+		  order by decode(id,'admin',id), regdate desc 
+		   
+		   ))
+	where rnum &gt;= #{pageStart} and 
+	      rnum &lt;= #{pageStart} + #{perPageNum} - 1	
+</select>	 
+
+<!-- 게시글 조회수 올라가는 SQL -->
+<update id="updatecnt" parameterType="java.lang.Integer">
+	update yjyboard
+	set readcnt = readcnt + 1
+	where bno = #{bno}
+</update>
+
+<!-- 게시글 상세보기 SQL -->
+<select id="detail" parameterType="java.lang.Integer" resultType="Board">
+	select *
+	from yjyboard
+	where bno = #{bno}
+</select>
+
+<!-- 게시글 수정하는 SQL -->
+<update id="update" parameterType="Board">
+	update yjyboard
+	set title=#{title}, content=#{content}, regdate=sysdate
+	where bno=#{bno}
+</update>
+
+<!-- 게시글 삭제하는 SQL -->
+<delete id="delete" parameterType="java.lang.Integer">
+	delete from yjyboard
+	where bno = #{bno}
+</delete>
+
+<!-- 전체 게시글 구하는 SQL -->
+<select id="totalcount" resultType="java.lang.Integer" parameterType="SearchCriteria">
+	select count(*)
+	from yjyboard
+	<include refid="search"></include>
+</select>
+
+
+</mapper>
