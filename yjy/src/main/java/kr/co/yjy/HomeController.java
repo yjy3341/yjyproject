@@ -23,10 +23,7 @@ import kr.co.yjy.service.UserService;
 
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private SqlSession sqlSession;
-	
+		
 	@Autowired
 	private UserService userService;
 	
