@@ -30,7 +30,7 @@
 					<th width="11%">조회수</th>
 				</tr>
 				
-						<c:forEach var="ad" items="${list}">
+						<c:forEach var="ad" items="${map.list}">
 						
 						<c:if test ="${ad.id == 'admin'}">
 						<tr  bgcolor=pink>
@@ -46,7 +46,7 @@
 						</c:if>
 						</c:forEach>
 					 
-				<c:forEach var="vo" items="${list}">
+				<c:forEach var="vo" items="${map.list}">
 				
 					<c:if test="${vo.id != 'admin'}"> 
 					<tr>
@@ -55,7 +55,7 @@
 						<!-- 상세보기 링크: 상세보기 한 후 이전 목록으로 돌아가도록 할려면
 						현재 페이지 번호와 페이지당 출력개수를 가지고 가야 합니다. -->
 						<!-- pageMaker.makeQuery(pageMaker.criteria.page) -->
-						<td>&nbsp; <a href="detail${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${vo.bno}">${vo.title}</a></td>
+						<td>&nbsp; <a href="detail${map.pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${vo.bno}">${vo.title}</a></td>
 						<td>&nbsp;${vo.nickname}</td>
 						<td>&nbsp; ${vo.dispDate}</td>						
 						<td align="right"><span class="badge bg-blue">${vo.readcnt}</span>&nbsp;</td>
@@ -67,19 +67,19 @@
 		<div class="box-footer text-center">
 			<ul class="pagination">
 					<!-- 이전 링크 -->
-					<c:if test="${pageMaker.prev}">
+					<c:if test="${map.pageMaker.prev}">
 						<li><a href=
-						"board?page=${pageMaker.makeSearch(pageMaker.startPage-1)}&perPageNum=${pageMaker.criteria.perPageNum}">이전</a></li>
+						"board?page=${map.pageMaker.makeSearch(pageMaker.startPage-1)}&perPageNum=${map.pageMaker.criteria.perPageNum}">이전</a></li>
 					</c:if>		
 					<!-- 페이지 번호 -->
 					<c:forEach var="idx" 
-						begin="${pageMaker.startPage}" 
-						end="${pageMaker.endPage}">
-						<li><a href="board${pageMaker.makeSearch(idx)}">${idx}</a></li>
+						begin="${map.pageMaker.startPage}" 
+						end="${map.pageMaker.endPage}">
+						<li><a href="board${map.pageMaker.makeSearch(idx)}">${idx}</a></li>
 					</c:forEach>
 					<!-- 다음 링크 -->
-					<c:if test="${pageMaker.next}">
-						<li><a href="board?page=${pageMaker.makeSearch(pageMaker.endPage+1)}&perPageNum=${pageMaker.criteria.perPageNum}">다음</a></li>
+					<c:if test="${map.pageMaker.next}">
+						<li><a href="board?page=${map.pageMaker.makeSearch(pageMaker.endPage+1)}&perPageNum=${map.pageMaker.criteria.perPageNum}">다음</a></li>
 					</c:if>				
 			</ul>
 		</div>
@@ -90,20 +90,20 @@
 	<div class="box-body text-center">
 	<select name="searchType" id="searchType">
 		<option value="n"
-		 <c:out value="${pageMaker.criteria.searchType==null?'selected':''}"/>
+		 <c:out value="${map.pageMaker.criteria.searchType==null?'selected':''}"/>
 		>--</option>
 
 		<option value="t"
-		 <c:out value="${pageMaker.criteria.searchType=='t'?'selected':''}"/>
+		 <c:out value="${map.pageMaker.criteria.searchType=='t'?'selected':''}"/>
 		>제목</option> 
 	
 		<option value="c"
-		 <c:out value="${pageMaker.criteria.searchType=='c'?'selected':''}"/>
+		 <c:out value="${map.pageMaker.criteria.searchType=='c'?'selected':''}"/>
 		>내용</option>
 	</select>
 
 	<input type="text" name="keyword" id="keyword" 
-		value="${pageMaker.criteria.keyword}"/>
+		value="${map.pageMaker.criteria.keyword}"/>
 	<input type="button" class="btn btn-warning" value="검색" 
 		id="searchBtn"/>	
 </div>
@@ -122,8 +122,8 @@ $('#searchBtn').on("click", function(event){
 	
 	console.log("searchType : " + searchType);
 	console.log("keyword : " + keyword);
-	console.log("http://localhost:8999/yjy/board/board${pageMaker.makeQuery(1)}&searchType=" + searchType + "&keyword=" + keyword);
-	self.location="/yjy/board/board${pageMaker.makeQuery(1)}&searchType=" + searchType + "&keyword=" + keyword;
+	console.log("http://localhost:8999/yjy/board/board${map.pageMaker.makeQuery(1)}&searchType=" + searchType + "&keyword=" + keyword);
+	self.location="/yjy/board/board${map.pageMaker.makeQuery(1)}&searchType=" + searchType + "&keyword=" + keyword;
 })
 
 				</script>

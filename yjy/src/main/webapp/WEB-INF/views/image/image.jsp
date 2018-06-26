@@ -84,7 +84,7 @@ function getImage(){
 	}
 	});
 }
-
+/* 
 document.getElementById("imageadd").addEventListener(
 		"click", function(){
 		$('#imageform').dialog({
@@ -117,7 +117,7 @@ document.getElementById("imageadd").addEventListener(
 				}
 			}
 		});
-	});
+	}); */
 //댓글 삭제를 눌렀을 때 호출될 함수
 function del(btn){
 	

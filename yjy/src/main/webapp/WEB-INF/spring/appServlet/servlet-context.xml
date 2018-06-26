@@ -53,7 +53,6 @@
 			<mapping path="/board/update"/>
 			<mapping path="/board/delete"/>
 			<mapping path="/main/sun"/>
-			<mapping path="/main/chat"/>
 			<mapping path="/main/earth"/>
 			<mapping path="/main/jupiter"/>
 			<mapping path="/main/mars"/>
@@ -77,18 +76,5 @@
 		</interceptor>
 	</interceptors> -->
 	
-	
-	 <!-- WebSocket -->
-	<!-- <websocket:handlers>
-		<websocket:mapping handler="chatHandler" path="/chat-ws"/>
-		<websocket:sockjs/>
-	</websocket:handlers>
-	
-	이때 Client에서 접속할 Path를 지정하고 해당 Path에서 들어오는 WebSocket 요청을 처리할 클래스를 등록합니다.
-	여기서는 “/echo”로 요청이 들어오면 WebSocket을 처리하고, 처리하는 클래스는 “kr.co.yjy.EchoHandler”가 됩니다.
 
-	<beans:bean id="chatHandler" class="kr.co.yjy.ChatHandler"/>
-	 
-	
- -->	
 </beans:beans>

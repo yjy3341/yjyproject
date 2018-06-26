@@ -29,15 +29,10 @@ import kr.co.yjy.service.UserService;
 
 @RestController
 public class ReplyController {
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private ReplyService replyService;
-	
-	@Autowired
-	private ImageService imageService;
-	
+
 	@RequestMapping(value="reply/register",method=RequestMethod.GET)
 	public Map<String, Object> sunregister(HttpServletRequest request){
 		boolean result = replyService.register(request);
@@ -62,40 +57,7 @@ public class ReplyController {
 		return map;
 	}
 		
-	/*admin*/
-	/*---------------------------------------------------------------------*/
-	
-	@RequestMapping(value="admin/usercontrol", method=RequestMethod.GET)
-	public List<User> usercontrol(HttpServletRequest request){
-		
-		return userService.userControl(request);
-	}
-	
-	@RequestMapping(value="admin/userdelete", method=RequestMethod.GET)
-	public Map<String, Object> userdelete(HttpServletRequest request, Model model,RedirectAttributes attr){
-		boolean result = userService.userdelete(request);
-		Map<String, Object>map = new HashMap<String, Object>();
-		map.put("result", result);
-		return map;
-	}
-	
-	/*image*/
-	/*--------------------------------------------------*/
-	@RequestMapping(value="image/imagelist",method=RequestMethod.GET)
-	public List<Image> imate( HttpServletRequest request){
-		return imageService.imagelist(request);
-	}
-	
-	@RequestMapping(value="image/imagedelete",method=RequestMethod.GET)
-	public Map<String, Object>imagedelete(HttpServletRequest request){
-		boolean result = imageService.delete(request);
-		Map<String, Object>map = new HashMap<String, Object>();
-		map.put("result", result);
-		return map;
-	}
-	
-	/*reply list*/
-	/*---------------------------------------------------------------*/
+
 	@RequestMapping(value="reply/mercurylist",method=RequestMethod.GET)
 	public List<Reply> mercurylist( HttpServletRequest request){
 		

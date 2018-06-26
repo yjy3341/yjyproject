@@ -25,9 +25,6 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@Autowired
-	private BoardDao boardDao;
-	
 	@RequestMapping(value="board/register", method=RequestMethod.GET)
 	public String register() {
 		return "board/register";
@@ -41,27 +38,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="board/board", method=RequestMethod.GET)
-	public void list(SearchCriteria criteria, Model model) {
-		//페이지 번호 목록 만들기
-		PageMaker pageMaker = new PageMaker();
-		//현재 페이지와 페이지 당 출력 개수는 저장
-		pageMaker.setCriteria(criteria);
-		//젅체 데이터 개수 저장
-		pageMaker.setTotalCount(boardDao.totalCount(criteria));
-		
-		List<Board> list = boardService.list(criteria);
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", list);	
-
+	public String list(SearchCriteria criteria, Model model) {
+		Map<String, Object>map = boardService.list(criteria);
+		model.addAttribute("map", map);
+		return "board/board";
 	}
 	
 	@RequestMapping(value="board/detail", method=RequestMethod.GET)
 	//현재 페이지 번호와 페이지 당 출력 개수를 criteria를 저장하고
 	//다음 페이지에 자동으로 전달
 	public String detail(Criteria criteria,HttpServletRequest request, Model model) {
-	
 		Board board = boardService.detail(request);
-		
 		model.addAttribute("board", board);			
 		return "board/detail";
 	}

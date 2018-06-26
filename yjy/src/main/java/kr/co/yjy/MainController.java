@@ -1,16 +1,21 @@
 package kr.co.yjy;
 
-import org.springframework.beans.factory.support.SecurityContextProvider;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.yjy.domain.User;
+
 
 @Controller
 public class MainController {
+	
+	@RequestMapping(value="main/main",method=RequestMethod.GET)
+	public String main(Model model){
+		return "main/main";
+	}
+	
 	@RequestMapping(value="main/sun", method=RequestMethod.GET)
 	public String sun(Model model) {
 		return "main/sun";

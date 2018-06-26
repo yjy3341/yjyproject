@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.co.yjy.service.UserService;
 
 @RestController
-public class JSONController {
+public class JsonController {
 	@Autowired
 	private UserService userService;
 	
 	//id 중복 체크 요청을 처리
 	@RequestMapping(value="user/idcheck",method=RequestMethod.GET)
 	public Map<String, Object> idCheck(HttpServletRequest request){
-		//존재하는 이메일이면 email에 그 이메일이 저장되고
-		//존재하지 않는 이메일이면 null이 저장됩니다.
+		//존재하는 id이면 id에 그 id 저장되고
+		//존재하지 않는 id이면 null이 저장됩니다.
 		String id = userService.idCheck(request);
 		
 		Map<String, Object> map =

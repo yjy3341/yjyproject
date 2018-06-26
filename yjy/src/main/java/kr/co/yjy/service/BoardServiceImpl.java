@@ -46,9 +46,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> list(SearchCriteria criteria) {
+	/*public List<Board> list(SearchCriteria criteria)*/ 
+	public Map<String, Object> list(SearchCriteria criteria){
 		
-		/*Map<String, Object> map = new HashMap<String, Object>();*/
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//데이터 가져오기
 		List<Board> list = boardDao.list(criteria);
@@ -75,8 +76,17 @@ public class BoardServiceImpl implements BoardService {
 				board.setDispDate(regdate);
 			}
 		}
-
-		return list;
+		map.put("list", list);
+		//페이지 번호 목록 만들기
+		PageMaker pageMaker = new PageMaker();
+		//현재 페이지와 페이지 당 출력 개수는 저장
+		pageMaker.setCriteria(criteria);
+		//젅체 데이터 개수 저장
+		pageMaker.setTotalCount(boardDao.totalCount(criteria));
+		
+		map.put("pageMaker", pageMaker);
+		
+		return map;
 	}
 
 	@Override

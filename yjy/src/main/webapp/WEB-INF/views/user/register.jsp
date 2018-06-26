@@ -17,9 +17,8 @@
 	  <div class='col-xs-6 col-md-4'> 
 	<form id="registerform" method="post" onsubmit="return check()">
 		<div class="form-group">
-			<label for="exampleInputEmail1">아이디: </label> <input type="text"
-				onblur="confirmId()" class="form-control" id="id" name="id"
-				placeholder="아이디를 입력하세요">
+			<label for="exampleInputEmail1">아이디: </label> 
+			<input type="text" onblur="confirmId()" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요">         
 		</div>
 		<!-- 메시지 출력 영역 -->
 		<div id="iddiv"></div>
@@ -58,8 +57,9 @@
 </body>
 <script
 	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js">
-	
 </script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	//id 중복 검사 통과 여부를 저장할 변수
 	var idcheck = false;

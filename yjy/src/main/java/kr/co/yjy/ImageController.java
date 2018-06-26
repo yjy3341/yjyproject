@@ -22,7 +22,6 @@ import kr.co.yjy.service.ImageService;
 @Controller
 public class ImageController {
 
-	
 	@Autowired
 	private ImageService imageService;
 
@@ -46,7 +45,7 @@ public class ImageController {
 	}
 	
 
-	@RequestMapping(value = "image/delete", method = RequestMethod.GET)
+/*	@RequestMapping(value = "image/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, Model model,RedirectAttributes attr) {
 		//서비스 메소드 호출
 		imageService.delete(request);
@@ -54,6 +53,6 @@ public class ImageController {
 		attr.addFlashAttribute("msg", "게시글 삭제 성공");
 		//결과 페이지 결정
 		return "redirect:imagedelete";
-	}
+	}*/
 	
 }

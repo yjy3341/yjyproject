@@ -14,7 +14,8 @@ public interface BoardService {
 	public void register(HttpServletRequest request);
 	
 	//게시글 목록 가져오는
-	public List<Board> list(SearchCriteria criteria);
+	public Map<String, Object> list(SearchCriteria criteria);/*
+	public List<Board> list(SearchCriteria criteria);*/
 
 	//게시글 상세보기
 	public Board detail(HttpServletRequest request);

@@ -40,17 +40,5 @@ public class UserController {
 	}
 	
 		
-		@RequestMapping(value="main/main",method=RequestMethod.GET)
-		public String main(Model model){
-			return "main/main";
-		}
-		
-		@RequestMapping(value="admin/usercontrollist", method=RequestMethod.GET)
-		public String usercontrollist(Model model){
-			
-			return "admin/usercontrollist";
-		}
-		
-		
 		
 }
